@@ -26,17 +26,14 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
+    app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
-// Configurar para escuchar en http://0.0.0.0:5000 (accesible desde cualquier interfaz)
-app.Urls.Add("http://0.0.0.0:5000");
 
 try
 {
