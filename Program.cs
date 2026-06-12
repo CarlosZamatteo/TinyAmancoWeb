@@ -35,9 +35,12 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
+// Configurar para escuchar en http://0.0.0.0:5000 (accesible desde cualquier interfaz)
+app.Urls.Add("http://0.0.0.0:5000");
+
 try
 {
-    Log.Information("Iniciando aplicación web de Amanco Wavin Argentina");
+    Log.Information("Iniciando aplicación web de Amanco Wavin Argentina en http://localhost:5000");
     app.Run();
 }
 catch (Exception ex)
