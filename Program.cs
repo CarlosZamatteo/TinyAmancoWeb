@@ -2,44 +2,55 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Serilog
+// Configurar Serilog
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("logs/app-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 builder.Host.UseSerilog();
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Agregar servicios para Razor Pages y HttpClient
+builder.Services.AddRazorPages();
+builder.Services.AddHttpClient();
 
-// Register application services
-builder.Services.AddScoped<IMyService, MyService>();
+// Configurar opciones de la API
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Configurar el pipeline HTTP
+if (!app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
 app.UseAuthorization();
-app.MapControllers();
+
+app.MapRazorPages();
 
 try
 {
-    Log.Information("Starting application");
+    Log.Information("Iniciando aplicación web de Amanco Wavin Argentina");
     app.Run();
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "Application terminated unexpectedly");
+    Log.Fatal(ex, "La aplicación terminó inesperadamente");
 }
 finally
 {
     Log.CloseAndFlush();
+}
+
+// Clase para configuración de la API
+public class ApiSettings
+{
+    public string BaseUrl { get; set; } = string.Empty;
 }
