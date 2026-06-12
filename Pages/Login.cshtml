@@ -1,0 +1,58 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Amanco Wavin Argentina</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="~/images/amanco-wavin-logo.svg" alt="Amanco Wavin Argentina" class="company-logo" onerror="this.style.display='none'" />
+                <h1>Bienvenido</h1>
+                <p class="subtitle">Sistema de Gestión - Amanco Wavin Argentina</p>
+            </div>
+
+            <form method="post" id="loginForm">
+                <div asp-validation-summary="All" class="validation-summary"></div>
+                
+                <div class="form-group">
+                    <label asp-for="Input.Email">Email</label>
+                    <input asp-for="Input.Email" type="email" placeholder="tu.email@amanco-wavin.com" required />
+                    <span asp-validation-for="Input.Email" class="field-validation-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Password">Contraseña</label>
+                    <input asp-for="Input.Password" type="password" placeholder="••••••••" required />
+                    <span asp-validation-for="Input.Password" class="field-validation-error"></span>
+                </div>
+
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input asp-for="Input.RememberMe" type="checkbox" id="rememberMe" />
+                        <label for="rememberMe">Recordarme</label>
+                    </div>
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Ingresar</button>
+            </form>
+
+            <div class="login-footer">
+                <p>&copy; @DateTime.Now.Year Amanco Wavin Argentina. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/login.js"></script>
+</body>
+</html>

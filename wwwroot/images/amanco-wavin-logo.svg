@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <!-- Fondo -->
+  <rect width="400" height="120" fill="#ffffff"/>
+  
+  <!-- Círculo azul principal -->
+  <circle cx="60" cy="60" r="45" fill="#0054A6"/>
+  
+  <!-- Ola estilizada en blanco -->
+  <path d="M 30 65 Q 45 50 60 65 Q 75 80 90 65" stroke="#ffffff" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 35 75 Q 50 60 65 75 Q 80 90 95 75" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.8"/>
+  
+  <!-- Texto AMANCO WAVIN -->
+  <text x="125" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#0054A6">AMANCO</text>
+  <text x="125" y="80" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#0099E1">WAVIN</text>
+  
+  <!-- Argentina -->
+  <text x="320" y="65" font-family="Arial, sans-serif" font-size="14" fill="#666666">Argentina</text>
+</svg>
